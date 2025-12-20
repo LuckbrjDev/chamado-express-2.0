@@ -113,3 +113,6 @@ button {
   display: block;
   margin-top: 10px;
 }
+#btnCopiar {
+    background-color: #000;
+}
