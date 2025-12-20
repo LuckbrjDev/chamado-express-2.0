@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Chamado Express 2.0</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="layout">
+
+    <aside class="sidebar">
+      <h2>Atalhos</h2>
+      <div id="atalhosList"></div>
+
+      <button id="btnNovoAtalho">+ Novo Atalho</button>
+
+      <label class="theme-toggle">
+        <input type="checkbox" id="chkTema"> Tema escuro
+      </label>
+    </aside>
+
+    <main class="container">
+      <h1>Chamado Express 2.0</h1>
+
+      <div class="row">
+        <label>Tipo</label>
+        <label><input type="checkbox" id="chkErro"> Erro</label>
+        <label><input type="checkbox" id="chkDuvida"> Dúvida</label>
+      </div>
+
+      <div class="row">
+        <label id="lblCausa">Causa do Erro/Dúvida</label>
+        <textarea id="txtCausa"></textarea>
+      </div>
+
+      <div class="row">
+        <label>Solução</label>
+        <textarea id="txtSolucao"></textarea>
+      </div>
+
+      <div class="row">
+        <label>Feedback do Cliente</label>
+        <textarea id="txtFeedback"></textarea>
+        
+     </div>
+
+      <div class="row">
+        <label>Oportunidade de Upsell</label>
+        <textarea id="txtUpsell"></textarea>
+        <label>
+          <input type="checkbox" id="chkSemUpsell"> Não tive oportunidade
+        </label>
+      </div>
+
+      <button id="btnCopiar">Copiar</button>
+    </main>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
