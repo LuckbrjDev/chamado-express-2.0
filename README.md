@@ -102,6 +102,8 @@ Evoluir para arquitetura com frontend moderno
 
 Projeto de uso livre para fins educacionais e pessoais.
 
+Usem com Resposabilidade
+
 👤 Autor
 
 Desenvolvido por Luck BRJ
