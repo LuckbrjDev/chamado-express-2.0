@@ -49,6 +49,10 @@ const atalhosPadrao = [
   { nome: "ERRO 204 DUPLICIDADE", texto: "baixei o xml da sefaz e importei no sistema do cliente" },
   { nome: "Atualização de versão", texto: "atualizei o sistema do cliente para versão mais atual" },
   { nome: "Reparação banco", texto: "compactei e reparei o banco de dados do cliente" }
+  { nome: "Configuração de certificado", texto: "localizei o arquivo do certificado e configurei o certificado digital no sistema do cliente" },
+  { nome: "Mudança de regime", texto: "acessei o cadastro do cliente no sistema e alterei para regime normal, apos isso consultei qual cfop ele usava e configurei os impostos que ele me passou nas respctivas cfops apos isso fiz a config2 de tabelas para puxar os impostos por CFOP"},
+  { nome: "Ie do destinatário", texto: "consultei o cnpj do destinatario no sefaz, identifiquei a IE e cadastrei no sistema abri a nota e reinseri o destinatario" },
+  { nome: "atualizaçao de versão", texto: "atualizei o sistema do cliente da versão,  para a versão atual" },
 ];
 
 let atalhos = JSON.parse(localStorage.getItem(ATALHOS_KEY)) || atalhosPadrao;
