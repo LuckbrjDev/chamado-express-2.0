@@ -22,19 +22,17 @@ const TEMA_KEY = "express_tema";
 /* ===== TIPO ERRO / DÚVIDA ===== */
 chkErro.onchange = () => {
   if (chkErro.checked) {
-    chkDuvida.checked = false;
     lblCausa.textContent = "Causa do Erro";
   }
 };
 
 chkDuvida.onchange = () => {
   if (chkDuvida.checked) {
-    chkErro.checked = false;
     lblCausa.textContent = "Dúvida";
   }
 };
 
-/* ===== Feedback ===== */
+/* ===== FEEDBACK ===== */
 chkSemFeedback.onchange = () => {
   if (chkSemFeedback.checked) {
     txtFeedback.value = "Agradeceu";
@@ -58,19 +56,41 @@ chkSemUpsell.onchange = () => {
 
 /* ===== ATALHOS ===== */
 const atalhosPadrao = [
-  { nome: "ERRO 204 DUPLICIDADE", texto: "baixei o xml da sefaz e importei no sistema do cliente" },
-  { nome: "Atualização de versão", texto: "atualizei o sistema do cliente para versão mais atual" },
-  { nome: "Reparação banco", texto: "compactei e reparei o banco de dados do cliente" },
+  { nome: "ERRO 204 DUPLICIDADE", texto: "baixei o XML da Sefaz e importei no sistema do cliente" },
+  { nome: "Atualização de versão", texto: "atualizei o sistema do cliente para a versão mais atual" },
+  { nome: "Reparação de banco", texto: "compactei e reparei o banco de dados do cliente" },
   { nome: "Configuração de certificado", texto: "localizei o arquivo do certificado e configurei o certificado digital no sistema do cliente" },
-  { nome: "Mudança de regime", texto: "acessei o cadastro do cliente no sistema e alterei para regime normal, apos isso consultei qual cfop ele usava e configurei os impostos que ele me passou nas respctivas cfops apos isso fiz a config2 de tabelas para puxar os impostos por CFOP" },
-  { nome: "Ie do destinatário", texto: "consultei o cnpj do destinatario no sefaz, identifiquei a IE e cadastrei no sistema abri a nota e reinseri o destinatario" },
-  { nome: "atualizaçao de versão", texto: "atualizei o sistema do cliente da versão,  para a versão atual" },
+  { nome: "Mudança de regime", texto: "acessei o cadastro do cliente no sistema e alterei para regime normal, após isso consultei qual CFOP ele usava e configurei os impostos que ele me passou nas respectivas CFOPs, depois fiz a config2 de tabelas para puxar os impostos por CFOP" },
+  { nome: "IE do destinatário", texto: "consultei o CNPJ do destinatário na Sefaz, identifiquei a IE e cadastrei no sistema, depois abri a nota e reinseri o destinatário" },
+  { nome: "Atualização de versão do cliente", texto: "atualizei o sistema do cliente para a versão atual" },
 ];
 
-let atalhos = JSON.parse(localStorage.getItem(ATALHOS_KEY)) || atalhosPadrao;
+function carregarAtalhos() {
+  try {
+    const salvos = JSON.parse(localStorage.getItem(ATALHOS_KEY));
+    return Array.isArray(salvos) ? salvos : atalhosPadrao;
+  } catch {
+    localStorage.removeItem(ATALHOS_KEY);
+    return atalhosPadrao;
+  }
+}
+
+let atalhos = carregarAtalhos();
 
 function salvarAtalhos() {
   localStorage.setItem(ATALHOS_KEY, JSON.stringify(atalhos));
+}
+
+function removerUltimaOcorrencia(texto, trecho) {
+  const linhas = texto.split("\n");
+  const posicao = linhas.lastIndexOf(trecho);
+
+  if (posicao === -1) {
+    return texto;
+  }
+
+  linhas.splice(posicao, 1);
+  return linhas.join("\n").trim();
 }
 
 function renderAtalhos() {
@@ -90,7 +110,7 @@ function renderAtalhos() {
       if (chk.checked) {
         txtSolucao.value += (txtSolucao.value ? "\n" : "") + a.texto;
       } else {
-        txtSolucao.value = txtSolucao.value.replace(a.texto, "").trim();
+        txtSolucao.value = removerUltimaOcorrencia(txtSolucao.value, a.texto);
       }
     };
 
@@ -100,12 +120,14 @@ function renderAtalhos() {
     acoes.className = "atalho-acoes";
 
     const btnEdit = document.createElement("button");
-    btnEdit.textContent = "✏️";
+    btnEdit.textContent = "Editar";
     btnEdit.onclick = () => editarAtalho(index);
 
     const btnDel = document.createElement("button");
-    btnDel.textContent = "❌";
+    btnDel.textContent = "Excluir";
     btnDel.onclick = () => {
+      if (!confirm("Excluir este atalho?")) return;
+
       atalhos.splice(index, 1);
       salvarAtalhos();
       renderAtalhos();
@@ -123,10 +145,21 @@ function renderAtalhos() {
 let dragIndex = null;
 
 function configurarDragDrop(item) {
-  item.ondragstart = () => dragIndex = item.dataset.index;
+  item.ondragstart = () => {
+    dragIndex = Number(item.dataset.index);
+    item.classList.add("dragging");
+  };
+
+  item.ondragend = () => {
+    item.classList.remove("dragging");
+  };
+
   item.ondragover = e => e.preventDefault();
   item.ondrop = () => {
-    const dropIndex = item.dataset.index;
+    const dropIndex = Number(item.dataset.index);
+
+    if (dragIndex === null || dragIndex === dropIndex) return;
+
     const movido = atalhos.splice(dragIndex, 1)[0];
     atalhos.splice(dropIndex, 0, movido);
     salvarAtalhos();
@@ -138,8 +171,9 @@ function configurarDragDrop(item) {
 function editarAtalho(index) {
   const nome = prompt("Editar nome:", atalhos[index].nome);
   const texto = prompt("Editar texto:", atalhos[index].texto);
-  if (nome && texto) {
-    atalhos[index] = { nome, texto };
+
+  if (nome?.trim() && texto?.trim()) {
+    atalhos[index] = { nome: nome.trim(), texto: texto.trim() };
     salvarAtalhos();
     renderAtalhos();
   }
@@ -148,15 +182,16 @@ function editarAtalho(index) {
 document.getElementById("btnNovoAtalho").onclick = () => {
   const nome = prompt("Nome do atalho:");
   const texto = prompt("Texto do atalho:");
-  if (nome && texto) {
-    atalhos.push({ nome, texto });
+
+  if (nome?.trim() && texto?.trim()) {
+    atalhos.push({ nome: nome.trim(), texto: texto.trim() });
     salvarAtalhos();
     renderAtalhos();
   }
 };
 
-/* ===== COPIAR (CORRIGIDO) ===== */
-btnCopiar.onclick = () => {
+/* ===== COPIAR ===== */
+btnCopiar.onclick = async () => {
   const tipo = chkErro.checked ? "Erro" : chkDuvida.checked ? "Dúvida" : "";
 
   const texto =
@@ -172,7 +207,12 @@ ${txtFeedback.value}
 Oportunidade de Upsell:
 ${txtUpsell.value}`;
 
-  navigator.clipboard.writeText(texto);
+  try {
+    await navigator.clipboard.writeText(texto);
+  } catch {
+    alert("Não foi possível copiar o texto. Os campos foram mantidos para você tentar novamente.");
+    return;
+  }
 
   document.querySelectorAll("textarea").forEach(t => {
     t.value = "";
@@ -180,6 +220,7 @@ ${txtUpsell.value}`;
   });
 
   document.querySelectorAll("input[type=checkbox]").forEach(c => c.checked = false);
+  document.querySelectorAll("input[name=tipo]").forEach(c => c.checked = false);
   lblCausa.textContent = "Causa do Erro/Dúvida";
 };
 

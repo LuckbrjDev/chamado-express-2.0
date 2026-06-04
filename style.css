@@ -80,6 +80,7 @@ body {
   border: none;
   cursor: pointer;
   color: #fff;
+  padding: 4px;
 }
 
 /* ===== CONTEÚDO ===== */
@@ -94,8 +95,9 @@ body {
 }
 
 textarea {
+  box-sizing: border-box;
   width: 100%;
-  min-height: 56px; /* 20% menor */
+  min-height: 56px;
   padding: 8px;
   resize: vertical;
 }
@@ -113,6 +115,17 @@ button {
   display: block;
   margin-top: 10px;
 }
+
 #btnCopiar {
-    background-color: #000;
+  background-color: #000;
+}
+
+@media (max-width: 720px) {
+  .layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: auto;
+  }
 }
