@@ -4,7 +4,7 @@
   --surface-muted: #f6f8fa;
   --text: #18202a;
   --muted: #627083;
-  --line: #dbe2ea;
+  -line: #dbe2ea;
   --primary: #0f766e;
   --primary-dark: #0b5d56;
   --accent: #f59e0b;
@@ -239,7 +239,7 @@ body {
 
 .type-selector {
   display: inline-grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 4px;
   margin-bottom: 18px;
   padding: 4px;

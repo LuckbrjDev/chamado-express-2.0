@@ -1,6 +1,7 @@
 /* ===== ELEMENTOS ===== */
 const chkErro = document.getElementById("chkErro");
 const chkDuvida = document.getElementById("chkDuvida");
+const chkSolicitacao = document.getElementById("chkSolicitacao");
 const lblCausa = document.getElementById("lblCausa");
 
 const txtCausa = document.getElementById("txtCausa");
@@ -31,6 +32,12 @@ chkErro.onchange = () => {
 chkDuvida.onchange = () => {
   if (chkDuvida.checked) {
     lblCausa.textContent = "Dúvida";
+  }
+};
+
+chkSolicitacao.onchange = () => {
+  if (chkSolicitacao.checked) {
+    lblCausa.textContent = "Motivo da Solicitação";
   }
 };
 
