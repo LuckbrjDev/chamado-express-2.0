@@ -66,6 +66,7 @@ const atalhosPadrao = [
   { nome: "Mudança de regime", texto: "acessei o cadastro do cliente no sistema e alterei para regime normal, após isso consultei qual CFOP ele usava e configurei os impostos que ele me passou nas respectivas CFOPs, depois fiz a config2 de tabelas para puxar os impostos por CFOP" },
   { nome: "IE do destinatário", texto: "consultei o CNPJ do destinatário na Sefaz, identifiquei a IE e cadastrei no sistema, depois abri a nota e reinseri o destinatário" },
   { nome: "Atualização de versão do cliente", texto: "atualizei o sistema do cliente para a versão atual" },
+  { nome: "Nota de Devolução", texto: "baixei o XML da Sefaz e importei no sistema do cliente, alterei a cfop destinatario e a finalidade e referenciei a chave da nota." },
 ];
 
 function carregarAtalhos() {
