@@ -1,25 +1,28 @@
 # Chamado Express 2.0
 
-Chamado Express é uma aplicação web simples para montar textos de atendimento usando atalhos personalizados. Ela funciona direto no navegador, sem servidor, sem instalação de dependências e salvando os dados localmente.
+Chamado Express é uma ferramenta web para padronizar e acelerar registros de atendimento. O sistema permite montar respostas de chamados com atalhos reutilizáveis, mantendo uma rotina mais rápida, organizada e consistente.
 
-## Funcionalidades
+O projeto roda direto no navegador, sem servidor e sem instalação de dependências.
 
-- Cadastro, edição, exclusão e reordenação de atalhos de texto
-- Inclusão rápida de atalhos no campo de solução
-- Montagem de texto para chamado com tipo, causa, solução, feedback e oportunidade de upsell
-- Cópia do texto pronto com um clique
+## Recursos
+
+- Montagem de chamado com tipo, causa, solução, feedback e oportunidade de upsell
+- Atalhos personalizados para respostas recorrentes
+- Cadastro, edição, exclusão e reordenação de atalhos
+- Cópia segura do texto final para a área de transferência
 - Tema claro e tema escuro
-- Salvamento dos atalhos e da preferência de tema no navegador
+- Salvamento local dos atalhos e preferências do usuário
+- Layout responsivo para desktop e telas menores
 
-## Execução
+## Como Usar
 
-Não é necessário instalar dependências ou rodar servidor.
+1. Clone ou baixe este repositório
+2. Abra o arquivo `index.html` em um navegador moderno
+3. Preencha os campos do atendimento
+4. Use os atalhos laterais para agilizar a solução
+5. Clique em `Copiar chamado`
 
-1. Baixe ou clone o repositório
-2. Abra o arquivo `index.html` em qualquer navegador moderno
-3. Crie ou use os atalhos e copie o texto final do chamado
-
-## Estrutura do Projeto
+## Estrutura
 
 ```text
 chamado-express-2.0/
@@ -29,35 +32,24 @@ chamado-express-2.0/
 └── README.md
 ```
 
-## Como Funciona
-
-Os atalhos ficam na lateral da tela. Ao marcar um atalho, o texto dele é adicionado ao campo de solução. Ao desmarcar, a última ocorrência daquele texto é removida.
-
-No fim do atendimento, o botão `Copiar` monta o texto do chamado e envia para a área de transferência. Se o navegador bloquear a cópia, os campos continuam preenchidos para evitar perda de informação.
-
 ## Armazenamento
 
-O projeto usa `localStorage`. Isso significa que os atalhos ficam salvos apenas no navegador utilizado. Limpar os dados do navegador também remove os atalhos salvos.
+Os dados são salvos no `localStorage` do navegador. Isso mantém o projeto simples e local, mas significa que os atalhos ficam disponíveis apenas no navegador em que foram criados.
 
 ## Limitações
 
-- Funciona apenas dentro do navegador
-- Não faz substituição de texto em nível de sistema operacional
-- Não sincroniza dados entre dispositivos
-- Não possui login ou banco de dados externo
+- Não sincroniza atalhos entre dispositivos
+- Não possui autenticação de usuários
+- Não usa banco de dados externo
+- Não substitui textos fora do navegador
 
-## Possíveis Evoluções
+## Próximas Melhorias
 
 - Exportação e importação de atalhos
-- Modal próprio para criar e editar atalhos
+- Modal próprio para criação e edição
+- Histórico de chamados copiados
 - Sincronização em nuvem
-- Transformar em extensão de navegador
-
-## Licença
-
-Projeto de uso livre para fins educacionais e pessoais.
-
-Use com responsabilidade.
+- Versão como extensão de navegador
 
 ## Autor
 

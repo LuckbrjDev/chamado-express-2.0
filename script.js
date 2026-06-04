@@ -13,7 +13,9 @@ const chkSemUpsell = document.getElementById("chkSemUpsell");
 const btnCopiar = document.getElementById("btnCopiar");
 
 const atalhosList = document.getElementById("atalhosList");
+const lblTotalAtalhos = document.getElementById("lblTotalAtalhos");
 const chkTema = document.getElementById("chkTema");
+const copyStatus = document.getElementById("copyStatus");
 
 /* ===== CONSTANTES ===== */
 const ATALHOS_KEY = "express_atalhos";
@@ -93,8 +95,20 @@ function removerUltimaOcorrencia(texto, trecho) {
   return linhas.join("\n").trim();
 }
 
+function mostrarStatus(mensagem, tipo = "success") {
+  copyStatus.textContent = mensagem;
+  copyStatus.dataset.type = tipo;
+
+  window.clearTimeout(mostrarStatus.timeout);
+  mostrarStatus.timeout = window.setTimeout(() => {
+    copyStatus.textContent = "";
+    delete copyStatus.dataset.type;
+  }, 3200);
+}
+
 function renderAtalhos() {
   atalhosList.innerHTML = "";
+  lblTotalAtalhos.textContent = `${atalhos.length} ${atalhos.length === 1 ? "item" : "itens"}`;
 
   atalhos.forEach((a, index) => {
     const item = document.createElement("div");
@@ -121,10 +135,12 @@ function renderAtalhos() {
 
     const btnEdit = document.createElement("button");
     btnEdit.textContent = "Editar";
+    btnEdit.type = "button";
     btnEdit.onclick = () => editarAtalho(index);
 
     const btnDel = document.createElement("button");
     btnDel.textContent = "Excluir";
+    btnDel.type = "button";
     btnDel.onclick = () => {
       if (!confirm("Excluir este atalho?")) return;
 
@@ -210,7 +226,7 @@ ${txtUpsell.value}`;
   try {
     await navigator.clipboard.writeText(texto);
   } catch {
-    alert("Não foi possível copiar o texto. Os campos foram mantidos para você tentar novamente.");
+    mostrarStatus("Não foi possível copiar. Os campos foram mantidos.", "error");
     return;
   }
 
@@ -222,6 +238,7 @@ ${txtUpsell.value}`;
   document.querySelectorAll("input[type=checkbox]").forEach(c => c.checked = false);
   document.querySelectorAll("input[name=tipo]").forEach(c => c.checked = false);
   lblCausa.textContent = "Causa do Erro/Dúvida";
+  mostrarStatus("Chamado copiado com sucesso.");
 };
 
 /* ===== TEMA ===== */

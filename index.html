@@ -7,54 +7,96 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="layout">
+  <div class="app-shell">
     <aside class="sidebar">
-      <h2>Atalhos</h2>
-      <div id="atalhosList"></div>
+      <div class="brand">
+        <div class="brand-mark">CE</div>
+        <div>
+          <strong>Chamado Express</strong>
+          <span>Atendimento 2.0</span>
+        </div>
+      </div>
 
-      <button id="btnNovoAtalho">+ Novo Atalho</button>
+      <div class="sidebar-header">
+        <h2>Atalhos</h2>
+        <span id="lblTotalAtalhos">0 itens</span>
+      </div>
+
+      <div id="atalhosList" class="shortcuts-list"></div>
+
+      <button id="btnNovoAtalho" class="button button-dark" type="button">Novo Atalho</button>
 
       <label class="theme-toggle">
-        <input type="checkbox" id="chkTema"> Tema escuro
+        <input type="checkbox" id="chkTema">
+        <span>Tema escuro</span>
       </label>
     </aside>
 
-    <main class="container">
-      <h1>Chamado Express 2.0</h1>
+    <main class="workspace">
+      <header class="page-header">
+        <div>
+          <span class="eyebrow">Central de atendimento</span>
+          <h1>Chamado Express 2.0</h1>
+        </div>
 
-      <div class="row">
-        <label>Tipo</label>
-        <label><input type="radio" name="tipo" id="chkErro" value="Erro"> Erro</label>
-        <label><input type="radio" name="tipo" id="chkDuvida" value="Dúvida"> Dúvida</label>
-      </div>
+        <div class="status-group">
+          <span class="status-pill">Local</span>
+          <span class="status-pill">Sem servidor</span>
+        </div>
+      </header>
 
-      <div class="row">
-        <label id="lblCausa">Causa do Erro/Dúvida</label>
-        <textarea id="txtCausa"></textarea>
-      </div>
+      <section class="form-panel">
+        <div class="section-heading">
+          <h2>Registro do chamado</h2>
+          <span>Modelo de resposta</span>
+        </div>
 
-      <div class="row">
-        <label>Solução</label>
-        <textarea id="txtSolucao"></textarea>
-      </div>
+        <div class="type-selector">
+          <label class="type-option">
+            <input type="radio" name="tipo" id="chkErro" value="Erro">
+            <span>Erro</span>
+          </label>
+          <label class="type-option">
+            <input type="radio" name="tipo" id="chkDuvida" value="Dúvida">
+            <span>Dúvida</span>
+          </label>
+        </div>
 
-      <div class="row">
-        <label>Feedback do Cliente</label>
-        <textarea id="txtFeedback"></textarea>
-        <label>
-          <input type="checkbox" id="chkSemFeedback"> Agradeceu
-        </label>
-      </div>
+        <div class="field">
+          <label id="lblCausa" for="txtCausa">Causa do Erro/Dúvida</label>
+          <textarea id="txtCausa" placeholder="Descreva o motivo do contato"></textarea>
+        </div>
 
-      <div class="row">
-        <label>Oportunidade de Upsell</label>
-        <textarea id="txtUpsell"></textarea>
-        <label>
-          <input type="checkbox" id="chkSemUpsell"> Não tive oportunidade
-        </label>
-      </div>
+        <div class="field">
+          <label for="txtSolucao">Solução</label>
+          <textarea id="txtSolucao" class="textarea-large" placeholder="Registre a ação realizada"></textarea>
+        </div>
 
-      <button id="btnCopiar">Copiar</button>
+        <div class="field-grid">
+          <div class="field">
+            <label for="txtFeedback">Feedback do Cliente</label>
+            <textarea id="txtFeedback" placeholder="Registre o retorno do cliente"></textarea>
+            <label class="check-option">
+              <input type="checkbox" id="chkSemFeedback">
+              <span>Agradeceu</span>
+            </label>
+          </div>
+
+          <div class="field">
+            <label for="txtUpsell">Oportunidade de Upsell</label>
+            <textarea id="txtUpsell" placeholder="Registre a oportunidade identificada"></textarea>
+            <label class="check-option">
+              <input type="checkbox" id="chkSemUpsell">
+              <span>Não tive oportunidade</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button id="btnCopiar" class="button button-primary" type="button">Copiar chamado</button>
+          <span id="copyStatus" class="copy-status" aria-live="polite"></span>
+        </div>
+      </section>
     </main>
   </div>
 
