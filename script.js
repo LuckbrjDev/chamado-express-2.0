@@ -217,7 +217,7 @@ document.getElementById("btnNovoAtalho").onclick = () => {
 
 /* ===== COPIAR ===== */
 btnCopiar.onclick = async () => {
-  const tipo = chkErro.checked ? "Erro" : chkDuvida.checked ? "Dúvida" : "";
+  const tipo = chkErro.checked ? "Erro" : chkDuvida.checked ? "Dúvida" : "" + (chkSolicitacao.checked ? "Solicitação" : "");
 
   const texto =
 `Tipo: ${tipo}
