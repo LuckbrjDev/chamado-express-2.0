@@ -59,9 +59,10 @@ chkSemUpsell.onchange = () => {
 /* ===== ATALHOS ===== */
 const atalhosPadrao = [
   { nome: "ERRO 204 DUPLICIDADE", texto: "baixei o XML da Sefaz e importei no sistema do cliente" },
-  { nome: "Atualização de versão", texto: "atualizei o sistema do cliente para a versão mais atual" },
+  { nome: "ERRO 204 DUPLICIDADE SQL", texto: "O cliente tinha prazo preenchido na nota executei a sql abaixo para corrigir a duplicidade, gerei a pre visualização para confirmar que os dados estavam corretos" },
   { nome: "Reparação de banco", texto: "compactei e reparei o banco de dados do cliente" },
   { nome: "Configuração de certificado", texto: "localizei o arquivo do certificado e configurei o certificado digital no sistema do cliente" },
+  { nome: "Certificado A1 da certificadora", texto: "baixei o certificado A1 da certificadora com os dados fornecidos pelo cliente instalei no computador e testei no sistema" },
   { nome: "Mudança de regime", texto: "acessei o cadastro do cliente no sistema e alterei para regime normal, após isso consultei qual CFOP ele usava e configurei os impostos que ele me passou nas respectivas CFOPs, depois fiz a config2 de tabelas para puxar os impostos por CFOP" },
   { nome: "IE do destinatário", texto: "consultei o CNPJ do destinatário na Sefaz, identifiquei a IE e cadastrei no sistema, depois abri a nota e reinseri o destinatário" },
   { nome: "Atualização de versão do cliente", texto: "atualizei o sistema do cliente para a versão atual" },
