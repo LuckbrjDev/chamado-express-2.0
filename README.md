@@ -1,109 +1,64 @@
-# chamado-express-2.0
-🚀 Express
+# Chamado Express 2.0
 
-Express é uma aplicação web simples para criação e uso de atalhos de texto personalizados, permitindo expandir comandos curtos em textos completos de forma rápida e prática dentro do navegador.
+Chamado Express é uma aplicação web simples para montar textos de atendimento usando atalhos personalizados. Ela funciona direto no navegador, sem servidor, sem instalação de dependências e salvando os dados localmente.
 
-O projeto foi desenvolvido com foco em simplicidade, produtividade e funcionamento totalmente local, sem dependência de servidor ou banco de dados externo.
+## Funcionalidades
 
-✨ Funcionalidades
+- Cadastro, edição, exclusão e reordenação de atalhos de texto
+- Inclusão rápida de atalhos no campo de solução
+- Montagem de texto para chamado com tipo, causa, solução, feedback e oportunidade de upsell
+- Cópia do texto pronto com um clique
+- Tema claro e tema escuro
+- Salvamento dos atalhos e da preferência de tema no navegador
 
-Criação de atalhos de texto personalizados
-
-Expansão automática do texto ao digitar o atalho
-
-Salvamento automático dos dados no navegador
-
-Interface simples e intuitiva
-
-Modo claro e modo escuro
-
-Copiar textos com um clique
-
-Alertas configuráveis
-
-Funciona offline após o carregamento inicial
-
-🖥️ Execução
+## Execução
 
 Não é necessário instalar dependências ou rodar servidor.
 
-Passos:
+1. Baixe ou clone o repositório
+2. Abra o arquivo `index.html` em qualquer navegador moderno
+3. Crie ou use os atalhos e copie o texto final do chamado
 
-Baixe ou clone o repositório
+## Estrutura do Projeto
 
-Abra o arquivo index.html em qualquer navegador moderno
+```text
+chamado-express-2.0/
+├── index.html
+├── style.css
+├── script.js
+└── README.md
+```
 
-Comece a criar e usar seus atalhos
+## Como Funciona
 
-🗂️ Estrutura do Projeto
-express/
-├── index.html      # Estrutura principal da aplicação
-├── style.css       # Estilos e temas (claro/escuro)
-├── script.js       # Lógica da aplicação e gerenciamento dos atalhos
-└── README.md       # Documentação
+Os atalhos ficam na lateral da tela. Ao marcar um atalho, o texto dele é adicionado ao campo de solução. Ao desmarcar, a última ocorrência daquele texto é removida.
 
-🧠 Como Funciona
+No fim do atendimento, o botão `Copiar` monta o texto do chamado e envia para a área de transferência. Se o navegador bloquear a cópia, os campos continuam preenchidos para evitar perda de informação.
 
-O usuário define um atalho (texto curto)
+## Armazenamento
 
-Define o conteúdo expandido
+O projeto usa `localStorage`. Isso significa que os atalhos ficam salvos apenas no navegador utilizado. Limpar os dados do navegador também remove os atalhos salvos.
 
-Ao digitar o atalho em um campo de texto, o sistema realiza a substituição automática
+## Limitações
 
-Todas as informações são armazenadas localmente no navegador
+- Funciona apenas dentro do navegador
+- Não faz substituição de texto em nível de sistema operacional
+- Não sincroniza dados entre dispositivos
+- Não possui login ou banco de dados externo
 
-💾 Armazenamento
+## Possíveis Evoluções
 
-Utiliza a API LocalStorage
+- Exportação e importação de atalhos
+- Modal próprio para criar e editar atalhos
+- Sincronização em nuvem
+- Transformar em extensão de navegador
 
-Os dados ficam salvos apenas no navegador utilizado
-
-Limpar os dados do navegador remove os atalhos salvos
-
-🎨 Interface
-
-Suporte a modo claro e modo escuro
-
-Preferência de tema salva automaticamente
-
-Layout focado em usabilidade e leitura
-
-⚠️ Limitações
-
-Funciona apenas dentro do navegador
-
-Não realiza substituições em nível de sistema operacional
-
-Não sincroniza dados entre dispositivos
-
-🛠️ Tecnologias Utilizadas
-
-HTML5
-
-CSS3
-
-JavaScript (Vanilla)
-
-Web Storage API (LocalStorage)
-
-📈 Possíveis Evoluções
-
-Exportação e importação de atalhos
-
-Sincronização em nuvem
-
-Autenticação de usuários
-
-Transformar em extensão de navegador
-
-Evoluir para arquitetura com frontend moderno
-
-📄 Licença
+## Licença
 
 Projeto de uso livre para fins educacionais e pessoais.
 
-Usem com Resposabilidade
+Use com responsabilidade.
 
-👤 Autor
+## Autor
 
 Desenvolvido por Luck BRJ
